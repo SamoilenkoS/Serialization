@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace Serialization
 {
@@ -14,8 +15,19 @@ namespace Serialization
                 student.LastName = streamReader.ReadLine();
             }
 
+            SerializeXML(student);
+
             Console.WriteLine($"{student}");
             Console.ReadKey();
+        }
+
+        private static void SerializeXML(Student student)
+        {
+            var serializer = new XmlSerializer(typeof(Student));
+            using (var streamWritter = new StreamWriter("Students.txt"))
+            {
+                serializer.Serialize(streamWritter, student);
+            }
         }
     }
 }
