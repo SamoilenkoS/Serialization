@@ -2,7 +2,7 @@
 
 namespace Serialization
 {
-    class Program
+    class Program//V1
     {
         static void Main()
         {
