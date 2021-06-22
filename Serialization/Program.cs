@@ -1,8 +1,9 @@
 ﻿using System;
+using System.IO;
 
 namespace Serialization
 {
-    class Program//V1
+    class Program//V2
     {
         static void Main()
         {
@@ -12,6 +13,10 @@ namespace Serialization
 
             Console.Write("Enter last name of student:");
             student.LastName = Console.ReadLine();
+
+            var streamWriter = new StreamWriter("Students.txt");
+            streamWriter.WriteLine($"{student.FirstName}{Environment.NewLine}{student.LastName}{Environment.NewLine}");
+            streamWriter.Close();
 
             Console.WriteLine($"{student}");
             Console.ReadKey();
