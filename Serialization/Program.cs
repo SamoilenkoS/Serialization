@@ -4,39 +4,39 @@ using System.Xml.Serialization;
 
 namespace Serialization
 {
-    class Program//V5
+    class Program//V7
     {
         private const string Filepath = "Students.txt";
         static void Main()
         {
-            SerializeXml(new Student
-            {
-                LastName = "Test",
-                FirstName = "Best",
-                Age = 5
-            });
+            var unitInput = new Unit {Id = 100500};
+            unitInput.Add(new Item { Key = 1, Value = 10 });
+            unitInput.Add(new Item { Key = 2, Value = "ten" });
+            unitInput.Add(new Item { Key = 3, Value = 10.5 });
 
-            var student = DeserializeXml();
+            SerializeXml(unitInput);
 
-            Console.WriteLine($"{student}");
+            var unitOutput = DeserializeXml<Unit>();
+
+            Console.WriteLine($"{unitOutput}");
             Console.ReadKey();
         }
 
-        private static void SerializeXml(Student student)
+        private static void SerializeXml<T>(T item)
         {
-            var serializer = new XmlSerializer(typeof(Student));
+            var serializer = new XmlSerializer(typeof(T));
             using (var streamWriter = new StreamWriter(Filepath))
             {
-                serializer.Serialize(streamWriter, student);
+                serializer.Serialize(streamWriter, item);
             }
         }
 
-        private static Student DeserializeXml()
+        private static T DeserializeXml<T>() where T: class 
         {
-            var serializer = new XmlSerializer(typeof(Student));
+            var serializer = new XmlSerializer(typeof(T));
             using (var streamReader = new StreamReader(Filepath))
             {
-                if (serializer.Deserialize(streamReader) is Student result)
+                if (serializer.Deserialize(streamReader) is T result)
                 {
                     return result;
                 }
