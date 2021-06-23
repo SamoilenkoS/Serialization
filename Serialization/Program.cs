@@ -24,9 +24,9 @@ namespace Serialization
         private static void SerializeXML(Student student)
         {
             var serializer = new XmlSerializer(typeof(Student));
-            using (var streamWritter = new StreamWriter("Students.txt"))
+            using (var streamWriter = new StreamWriter("Students.txt"))
             {
-                serializer.Serialize(streamWritter, student);
+                serializer.Serialize(streamWriter, student);
             }
         }
     }
