@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace Serialization
 {
-    class Program//V3
+    class Program//V4
     {
         static void Main()
         {
@@ -15,7 +15,7 @@ namespace Serialization
                 student.LastName = streamReader.ReadLine();
             }
 
-            SerializeXML(student);
+            SerializeXML(student);//eXtensible Markup Language
 
             Console.WriteLine($"{student}");
             Console.ReadKey();
