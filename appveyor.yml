@@ -1,0 +1,13 @@
+skip_tags: true
+
+before_build:
+
+build:
+  verbosity: detailed
+
+build_script:
+- cmd: dotnet restore ./Serialization/Serialization.csproj --disable-parallel
+- cmd: dotnet build ./Serialization/Serialization.csproj -c Release --disable-parallel
+
+nuget:
+  project_feed: true
