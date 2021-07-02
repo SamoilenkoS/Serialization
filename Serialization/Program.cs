@@ -44,5 +44,10 @@ namespace Serialization
 
             return null;
         }
+
+        private static void SerializeCSV<T>(T item)
+        {
+      //some changes
+        }
     }
 }
